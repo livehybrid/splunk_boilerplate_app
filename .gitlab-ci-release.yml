@@ -1,0 +1,5 @@
+name: $CI_PROJECT_NAME Release hash $CI_COMMIT_SHORT_SHA
+description: General Release
+tag_name: $CI_COMMIT_TAG
+changelog: $CI_COMMIT_TAG
+assets_dir: $CI_PROJECT_DIR/out/packages/splunkbase/$CI_PROJECT_NAME-$CI_COMMIT_TAG-$CI_COMMIT_SHORT_SHA.tar.gz

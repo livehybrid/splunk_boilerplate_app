@@ -1,0 +1,6 @@
+[ui]
+is_visible = true
+
+[package]
+check_for_updates = false
+id = CHANGE_TO_YOUR_APP_ID

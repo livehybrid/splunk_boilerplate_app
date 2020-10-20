@@ -1,0 +1,54 @@
+{
+  "schemaVersion": "1.0.0",
+  "info": {
+    "title": "APP TITLE GOES HERE",
+    "id": {
+      "group": null,
+      "name": "APP ID GOES HERE",
+      "version": "1.0.0"
+    },
+    "author": [
+      {
+        "name": "YOUR NAME GOES HERE",
+        "email": null,
+        "company": null
+      }
+    ],
+    "releaseDate": null,
+    "description": "",
+    "classification": {
+      "intendedAudience": null,
+      "categories": [],
+      "developmentStatus": null
+    },
+    "commonInformationModels": null,
+    "license": {
+      "name": null,
+      "text": null,
+      "uri": null
+    },
+    "privacyPolicy": {
+      "name": null,
+      "text": null,
+      "uri": null
+    },
+    "releaseNotes": {
+      "name": null,
+      "text": null,
+      "uri": null
+    }
+  },
+  "dependencies": {
+ 
+  },
+  "tasks": [],
+  "inputGroups": {
+  },
+  "incompatibleApps": {
+  },
+  "platformRequirements": {
+    "splunk": {
+      "Enterprise": "*"
+    }
+  }
+}

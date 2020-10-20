@@ -1,0 +1,40 @@
+stages:
+  - package-app
+# Uncomment to use GitLab deployment  (See "deploy" below)
+#  - deploy
+
+package-app:
+  image: livehybrid/splunk-appbuilder:latest
+  stage: package-app
+  script:
+    - make clean
+    - make package
+    - make package_test
+    - cp out/packages/splunkbase/*.tar.gz out/packages/splunkbase/$CI_PROJECT_NAME-$CI_COMMIT_SHORT_SHA.tar.gz
+  artifacts:
+    paths:
+      - out/packages/splunkbase/$CI_PROJECT_NAME-$CI_COMMIT_SHORT_SHA.tar.gz
+    reports:
+      junit: test-reports/*.xml
+
+### GitLab Deployment ###
+# Uncomment to use Gitlab deployment
+# The use of this requires:
+# * GitLab installation
+# * Gitlab runner with the following environment variables setup in the group/project/repo CI/CD section:
+#   * GITLAB_API_URL - e.g. https://git.<YOURDOMAIN>/api/v4
+#   * GITLAB_API_KEY - Personal access token with access to the API (See https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html)
+#
+# Usage: Tag your commit, this will trigger a build and upload the release.
+
+#deploy:
+#  stage: deploy
+#  image:
+#    name: registry.gitlab.com/deviosec/containers/release:latest
+#    entrypoint: ["/bin/sh", "-i", "-c"]
+#  script:
+#    - cp $CI_PROJECT_DIR/out/packages/splunkbase/$CI_PROJECT_NAME-$CI_COMMIT_SHORT_SHA.tar.gz $CI_PROJECT_DIR/out/packages/splunkbase/$CI_PROJECT_NAME-$CI_COMMIT_TAG-$CI_COMMIT_SHORT_SHA.tar.gz
+#    - curl https://gist.githubusercontent.com/livehybrid/f8e892d358fd9f9fa2dd97916516b5dd/raw/888b4e97f3751a76e4c24dc49b6d65301b166e05/gitlab-release.py -o /opt/gitlab-api/main.py
+#    - python3 /opt/gitlab-api/main.py
+#  only:
+#    - tags
